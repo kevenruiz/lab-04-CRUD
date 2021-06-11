@@ -3,8 +3,7 @@ import path from 'path';
 
 export default (pool) => {
   return fs
-    .readFile(
-      `${path.dirname(new URL(import.meta.url).pathname)}/../sql/setup.sql`,
+    .readFile('C:/Users/keven/alchemy/career-track-backend/lab-04-CRUD/sql/setup.sql',
       {
         encoding: 'utf-8',
       }
