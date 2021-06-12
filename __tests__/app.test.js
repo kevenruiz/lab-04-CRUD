@@ -81,9 +81,28 @@ describe('dog routes', () => {
     const res = await request(app).delete(`/api/v1/dogs/${byeByeDoggie.id}`);
 
     expect(res.body).toEqual(byeByeDoggie);
-    console.log(byeByeDoggie);
+
 
   });
+
+  it('updates a dog', async () => {
+    const firstDog = await Dog.insert({
+      name: 'Pup',
+      age: 1,
+      weight: 3,
+    });
+    const changedDog = ({
+      id: '1',
+      name: 'New Pup',
+      age: 3,
+      weight: 4.
+    });
+
+    const res = await (await request(app).put(`/api/v1/dogs/${firstDog.id}`)).send(changedDog);
+    expect(res.body).toEqual(changedDog);
+  });
+
+
 
 
 
