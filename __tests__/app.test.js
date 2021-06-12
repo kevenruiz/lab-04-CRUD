@@ -43,6 +43,32 @@ describe('dog routes', () => {
     expect(res.body).toEqual(dog);
   });
 
+  it('finds all dogs via GET', async () => {
+
+    const poodle = await Dog.insert({
+      name: 'fluffy',
+      age: 5,
+      weight: 2,
+    });
+
+    const pitbull = await Dog.insert({
+      name: 'max',
+      age: 6,
+      weight: 25,
+    });
+
+    const frenchy = await Dog.insert({
+      name: 'blanco',
+      age: 4,
+      weight: 15,
+    });
+
+    const res = await request(app).get('/api/v1/dogs');
+
+    expect(res.body).toEqual([poodle, pitbull, frenchy]);
+
+  });
+
 
 
 });
