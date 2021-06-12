@@ -4,6 +4,7 @@ import request from 'supertest';
 import app from '../lib/app.js';
 import Dog from '../lib/models/Dog.js';
 
+
 // CRUD
 // C - create POST      INSERT
 // R - read   GET       SELECT
@@ -66,6 +67,21 @@ describe('dog routes', () => {
     const res = await request(app).get('/api/v1/dogs');
 
     expect(res.body).toEqual([poodle, pitbull, frenchy]);
+
+  });
+
+  it('deletes byeByeDoggie', async () => {
+    const byeByeDoggie = await Dog.insert({
+      name: 'ghostPup',
+      age: 5,
+      weight: 15,
+    });
+
+
+    const res = await request(app).delete(`/api/v1/dogs/${byeByeDoggie.id}`);
+
+    expect(res.body).toEqual(byeByeDoggie);
+    console.log(byeByeDoggie);
 
   });
 
