@@ -2,6 +2,7 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
+import Dog from '../lib/models/Dog.js';
 
 // CRUD
 // C - create POST      INSERT
@@ -27,4 +28,21 @@ describe('dog routes', () => {
       weight: '20 lbs',
     });
   });
+
+
+
+  it('finds a dog by id via GET', async () => {
+    const dog = await Dog.insert({
+      name: 'rover',
+      age: 10,
+      weight: '50 lbs',
+    });
+
+    const res = await request(app).get(`/api/v1/dogs/${dog.id}`);
+
+    expect(res.body).toEqual(dog);
+  });
+
+
+
 });
