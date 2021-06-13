@@ -56,6 +56,21 @@ describe('Cat Routes', () => {
     expect(res.body).toEqual([entry1, entry2, entry3]);
   });
 
+  it('deletes cat1', async () => {
+    const cat1 = await Cat.insert({
+      name: 'ghostkitty',
+      color: 'transparent',
+      age: 15,
+    });
+
+
+    const res = await request(app).delete(`/api/v1/cats/${cat1.id}`);
+
+    expect(res.body).toEqual(cat1);
+
+
+  });
+
 
 
 
