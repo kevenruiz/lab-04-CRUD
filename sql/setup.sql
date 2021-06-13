@@ -7,16 +7,11 @@ CREATE TABLE dogs (
   weight TEXT
 );
 
-/*
+
 CREATE TABLE cats (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   name TEXT NOT NULL,
-  age INTEGER NOT NULL,
-  weight TEXT
-),
+  color TEXT NOT NULL
+  age INTEGER NOT NULL
+);
 
-CREATE TABLE pokemon 
-(
-
-)
-*/

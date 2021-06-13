@@ -5,25 +5,6 @@ import app from '../lib/app.js';
 import Cat from '../lib/models/Cat.js';
 
 
-describe('cat routes', () => {
-  beforeEach(() => {
-    return setup(pool);
-  });
-
-  it('creates a dog via POST', async () => {
-    const res = await request(app)
-      .post('/api/v1/dogs')
-      .send({ name: 'spot', age: 5, weight: '20 lbs' });
-
-    expect(res.body).toEqual({
-      id: '1',
-      name: 'spot',
-      age: 5,
-      weight: '20 lbs',
-    });
-  });
-
-});
 
 describe('Cat Routes', () => {
   beforeEach(() => {
