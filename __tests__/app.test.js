@@ -108,26 +108,6 @@ describe('dog routes', () => {
 
 });
 
-describe('Cat Routes', () => {
-  beforeEach(() => {
-    return setup(pool);
-  });
-  it('posting a cat to a table, using POST', async () => {
-    const res = await request(app)
-      .post('/api/v1/cats')
-      .send({ name: 'whiskers', color: 'Orange', age: 5 });
 
-    expect(res.body).toEqual({
-      id: '1',
-      name: 'whiskers',
-      color: 'Orange',
-      age: 5,
-    });
-    console.log('res.body', res.body);
-
-  });
-
-
-});
 
 
