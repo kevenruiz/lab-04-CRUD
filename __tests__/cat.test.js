@@ -34,31 +34,29 @@ describe('Cat Routes', () => {
     expect(res.body).toEqual(cat);
   });
 
-  it('finds all cats via GET', async () => {
+  it(' finds all cats via GET', async () => {
 
-    const kiddo = await Cat.insert({
-      name: 'baby Cat',
-      color: 'striped',
+    const entry1 = await Cat.insert({
+      name: 'hello1',
+      color: '1',
+      age: 1,
+    });
+    const entry2 = await Cat.insert({
+      name: 'hello2',
+      color: '2',
       age: 2,
     });
-
-    const parent1 = await Cat.insert({
-      name: 'mama Cat',
-      color: 'striped',
-      age: 5,
-    });
-
-    const parent2 = await Cat.insert({
-      name: 'Papa Cat',
-      color: 'striped',
-      age: 15,
+    const entry3 = await Cat.insert({
+      name: 'hello3',
+      color: '3',
+      age: 3,
     });
 
     const res = await request(app).get('/api/v1/cats');
-
-    expect(res.body).toEqual([kiddo, parent1, parent2]);
-
+    expect(res.body).toEqual([entry1, entry2, entry3]);
   });
+
+
 
 
 
