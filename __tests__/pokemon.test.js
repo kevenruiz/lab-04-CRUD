@@ -14,22 +14,19 @@ describe('Pokemon routes', () => {
       .send({
         name: 'pikachu',
         type: 'electric',
-        isEvolved: false,
       });
     expect(res.body).toEqual({
       id: '1',
       name: 'pikachu',
       type: 'electric',
-      isEvolved: false,
     });
   });
   it('find a pokemon by id via GET', async () => {
     const pokemon = await Pokemon.insert({
-      name: 'pikachu',
-      type: 'electric',
-      isEvolved: false,
+      name: 'pikachu', type: 'electric', isEvolved: false
     });
-    const res = await request(app).get(`/api/v1/dogs/${pokemon.id}`);
+    const res = await request(app).get(`/api/v1/pokemon/${pokemon.id}`);
+
     expect(res.body).toEqual(pokemon);
   });
 });
