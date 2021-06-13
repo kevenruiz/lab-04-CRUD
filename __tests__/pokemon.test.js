@@ -29,4 +29,18 @@ describe('Pokemon routes', () => {
 
     expect(res.body).toEqual(pokemon);
   });
+
+  it('finds all pokemon via GET', async () => {
+
+    const raichu = await Pokemon.insert({
+      name: 'Raichu',
+      type: 'Electric'
+    });
+    const snorlax = await Pokemon.insert({
+      name: 'Snorlax',
+      type: 'Bear Pokemon'
+    });
+    const res = await request(app).get('/api/v1/pokemon');
+    expect(res.body).toEqual([raichu, snorlax]);
+  });
 });
