@@ -2,6 +2,7 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
+import Pokemon from '../lib/models/Pokemon.js';
 
 describe('Pokemon routes', () => {
   beforeEach(() => {
@@ -22,5 +23,13 @@ describe('Pokemon routes', () => {
       isEvolved: false,
     });
   });
-
+  it('find a pokemon by id via GET', async () => {
+    const pokemon = await Pokemon.insert({
+      name: 'pikachu',
+      type: 'electric',
+      isEvolved: false,
+    });
+    const res = await request(app).get(`/api/v1/dogs/${pokemon.id}`);
+    expect(res.body).toEqual(pokemon);
+  });
 });
