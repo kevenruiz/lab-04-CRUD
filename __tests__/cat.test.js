@@ -71,6 +71,23 @@ describe('Cat Routes', () => {
 
   });
 
+  it('it updates a cat', async () => {
+    const cat1 = ({
+      name: 'I am kitty number one',
+      color: 'I want to be green today',
+      age: 25,
+    });
+    const cat2 = ({
+      name: 'just kidding I am now cat numero 2',
+      color: 'I am feeling blue actually',
+      age: 26,
+    });
+
+    const res = await (await request(app).put(`/api/v1/cats/${cat1.id}`)).send(cat2);
+    expect(res.body).toEqual(cat1(cat2));
+
+  });
+
 
 
 
