@@ -43,4 +43,14 @@ describe('Pokemon routes', () => {
     const res = await request(app).get('/api/v1/pokemon');
     expect(res.body).toEqual([raichu, snorlax]);
   });
+
+  it('deletes pokemon 1', async () => {
+    const pokemon1 = await Pokemon.insert({
+      name: 'deletethispokemon',
+      type: 'electric',
+    });
+
+    const res = await request(app).delete(`/api/v1/pokemon/${pokemon1.id}`);
+    expect(res.body).toEqual(pokemon1);
+  });
 });
