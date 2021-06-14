@@ -2,6 +2,7 @@ import setup from '../data/setup.js';
 import pool from '../lib/utils/pool.js';
 import request from 'supertest';
 import app from '../lib/app.js';
+import Vegetable from '../lib/models/Vegetables.js';
 
 
 
@@ -21,6 +22,15 @@ describe('vegetable routes', () => {
       name: 'tomato',
       color: 'red',
     });
+  });
+
+  it('finds a vegetable by id via GET', async () => {
+    const vegetable = await Vegetable.insert({
+      name: 'corn',
+      color: 'yellow',
+    });
+    const res = await request(app).get(`/api/v1/vegetables/${vegetable.id}`);
+    expect(res.body).toEqual(vegetable);
   });
 
 });
