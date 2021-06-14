@@ -53,4 +53,22 @@ describe('Pokemon routes', () => {
     const res = await request(app).delete(`/api/v1/pokemon/${pokemon1.id}`);
     expect(res.body).toEqual(pokemon1);
   });
+
+  it('update a pokemon', async () => {
+    const poke1 = await Pokemon.insert({
+      name: 'poke1',
+      type: 'Whatever',
+
+    });
+
+    const poke2 = await Pokemon.insert({
+      name: 'poke2',
+      type: 'also whatever',
+    });
+
+    const res = await (await request(app).put(`/api/v1/pokemon/${poke1.id}`)).send(poke2);
+    expect(res.body).toEqual(poke2);
+
+
+  });
 });
