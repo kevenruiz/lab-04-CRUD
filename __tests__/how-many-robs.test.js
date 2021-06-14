@@ -34,6 +34,33 @@ describe('how many rob lowes does it take to rob Lowes', () => {
     expect(res.body).toEqual(roblowe);
   });
 
+  it('finds all the robs before they go to lowes via GET', async () => {
+
+    const robWhoRobbed = await Roblowe.insert({
+      how: 'can a rob rob low lowes',
+      many: 'of the times',
+      times: 'undefined',
+    });
+
+    const robWhoIsJustRob = await Roblowe.insert({
+      how: 'can ron not rob lowes',
+      many: 'can this be true?',
+      times: 'few in between',
+    });
+
+    const robFromLowes = await Roblowe.insert({
+      how: 'can rob who robs rob lowe shop at lowes',
+      many: 'of the times this always happens',
+      times: 'all the time',
+    });
+
+    const res = await request(app).get('/api/v1/roblowes');
+
+    expect(res.body).toEqual([robWhoRobbed, robWhoIsJustRob, robFromLowes]);
+
+  });
+
+
 
 });
 
