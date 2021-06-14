@@ -51,5 +51,14 @@ describe('vegetable routes', () => {
     expect(res.body).toEqual([vegetable1, vegetable2, vegetable3]);
   });
 
+  it('deletes a tomato', async () => {
+    const vegetableToDelete = await Vegetable.insert({
+      name: 'tomato',
+      color: 'red',
+    });
+    const res = await request(app).delete(`/api/v1/vegetables/${vegetableToDelete.id}`);
+    expect(res.body).toEqual(vegetableToDelete);
+  });
+
 
 });
