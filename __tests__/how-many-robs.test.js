@@ -60,6 +60,21 @@ describe('how many rob lowes does it take to rob Lowes', () => {
 
   });
 
+  it('deletes robLowe', async () => {
+    const robLowe = await Roblowe.insert({
+      how: 'can rob who robs rob lowe shop at lowes',
+      many: 'of the times this always happens',
+      times: 'all the time',
+    });
+
+
+    const res = await request(app).delete(`/api/v1/roblowes/${robLowe.id}`);
+
+    expect(res.body).toEqual(robLowe);
+
+
+  });
+
 
 
 });
