@@ -62,12 +62,17 @@ describe('Pokemon routes', () => {
     });
 
     const poke2 = await Pokemon.insert({
+      id: '2',
       name: 'poke2',
       type: 'also whatever',
     });
 
-    const res = await (await request(app).put(`/api/v1/pokemon/${poke1.id}`)).send(poke2);
-    expect(res.body).toEqual(poke2);
+    const res = await request(app).put(`/api/v1/pokemon/${poke1.id}`).send(poke2);
+    expect(res.body).toEqual({
+      id: '1',
+      name: 'poke2',
+      type: 'also whatever',
+    });
 
 
   });
