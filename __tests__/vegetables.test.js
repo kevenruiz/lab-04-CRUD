@@ -33,4 +33,23 @@ describe('vegetable routes', () => {
     expect(res.body).toEqual(vegetable);
   });
 
+  it(' finds all dogs via GET', async () => {
+    const vegetable1 = await Vegetable.insert({
+      name: 'onion',
+      color: 'purple',
+    });
+    const vegetable2 = await Vegetable.insert({
+      name: 'jalapeno',
+      color: 'green',
+    });
+    const vegetable3 = await Vegetable.insert({
+      name: 'tomato',
+      color: 'red',
+    });
+
+    const res = await request(app).get('/api/v1/vegetables');
+    expect(res.body).toEqual([vegetable1, vegetable2, vegetable3]);
+  });
+
+
 });
