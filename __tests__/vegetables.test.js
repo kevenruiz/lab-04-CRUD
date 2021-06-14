@@ -60,5 +60,20 @@ describe('vegetable routes', () => {
     expect(res.body).toEqual(vegetableToDelete);
   });
 
+  it('updates a vegetable', async () => {
+    const firstVeggie = await Vegetable.insert({
+      name: 'apple',
+      color: 'white',
+    });
+    const changedVeggie = ({
+      id: '1',
+      name: 'Just kidding I am celery',
+      color: 'green'
+    });
+
+    const res = await request(app).put(`/api/v1/vegetables/${firstVeggie.id}`).send(changedVeggie);
+    expect(res.body).toEqual(changedVeggie);
+  });
+
 
 });
