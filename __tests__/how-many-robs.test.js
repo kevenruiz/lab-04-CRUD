@@ -75,6 +75,23 @@ describe('how many rob lowes does it take to rob Lowes', () => {
 
   });
 
+  it('updates a rob low', async () => {
+    const firstRob = await Roblowe.insert({
+      how: 'many Lows would Rob Lowe rob if Rob Lowe could rob Lowes',
+      many: '3',
+      times: 'all the time',
+    });
+    const changedRob = ({
+      id: '1',
+      how: 'Not to ROB your thunder but I think the number would be low',
+      many: 'Did you just Rob his showerthought? Thats a new Lowe even for you.',
+      times: 'reddit robbed me from sleep, sorry dan was just having fun with this one',
+    });
+
+    const res = await request(app).put(`/api/v1/roblowes/${firstRob.id}`).send(changedRob);
+    expect(res.body).toEqual(changedRob);
+  });
+
 
 
 });
